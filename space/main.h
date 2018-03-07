@@ -18,6 +18,12 @@ enum size_s : unsigned char {
 enum disposition_s : unsigned char {
 	OnOrbit, InAmbush, InCosmoport, OnLand,
 };
+enum duration_s : unsigned char {
+	Instant,
+	DurationMinute, Duration10Minute,
+	DurationHalfHour, DurationHour,
+	DurationDay, DurationMonth, DurationYear,
+};
 enum bay_s : unsigned char {
 	NoBay,
 	EngeneeringBay, FotifiedStorage, Hangar, Laboratory, LivingCells, LifeSupport, MedicalBay, Manipulator,
@@ -53,8 +59,10 @@ public:
 	location*		getlocation() const { return parent; }
 	location*		marshto();
 	void			set(disposition_s value) { disposition = value; }
+	void			set(location* value) { parent = value; }
 };
 namespace game {
+void				add(duration_s value);
 location*			find(const char* id);
 location*			chooselocation(location* parent, const char* format, ...);
 }

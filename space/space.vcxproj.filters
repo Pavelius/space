@@ -92,6 +92,9 @@
     <ClCompile Include="ship.cpp">
       <Filter>Логика</Filter>
     </ClCompile>
+    <ClCompile Include="duration.cpp">
+      <Filter>Логика</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="adat.h">

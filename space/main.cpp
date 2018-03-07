@@ -3,7 +3,10 @@
 
 int	main(int argc, char *argv[]) {
 	logs::open("Test");
-	game::chooselocation(game::find("sun"));
+	auto p1 = game::find("mars");
+	ship e;
+	e.set(p1);
+	e.marshto();
 	return 0;
 }
 
