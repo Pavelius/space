@@ -20,9 +20,11 @@ location* game::find(const char* id) {
 	return 0;
 }
 
-location* game::chooselocation(location* parent, const char* format, ...) {
+location* game::chooselocation(location* parent, location* exclude, const char* format, ...) {
 	for(auto& e : locations) {
 		if(e.parent != parent)
+			continue;
+		if(&e == exclude)
 			continue;
 		logs::add((int)&e, e.name);
 	}

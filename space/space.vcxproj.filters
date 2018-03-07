@@ -12,6 +12,9 @@
     <Filter Include="Платформа">
       <UniqueIdentifier>{269552cd-55bd-4567-8817-8253dbf67f80}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Текст">
+      <UniqueIdentifier>{83b37f82-da19-44a4-9c0f-ccca69fade75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bsdata.cpp">
@@ -53,16 +56,7 @@
     <ClCompile Include="io.cpp">
       <Filter>Библиотека</Filter>
     </ClCompile>
-    <ClCompile Include="logs.cpp">
-      <Filter>Библиотека</Filter>
-    </ClCompile>
-    <ClCompile Include="logs_printer.cpp">
-      <Filter>Библиотека</Filter>
-    </ClCompile>
     <ClCompile Include="point.cpp">
-      <Filter>Библиотека</Filter>
-    </ClCompile>
-    <ClCompile Include="stringcreator.cpp">
       <Filter>Библиотека</Filter>
     </ClCompile>
     <ClCompile Include="surface.cpp">
@@ -93,6 +87,27 @@
       <Filter>Логика</Filter>
     </ClCompile>
     <ClCompile Include="duration.cpp">
+      <Filter>Логика</Filter>
+    </ClCompile>
+    <ClCompile Include="logs.cpp">
+      <Filter>Текст</Filter>
+    </ClCompile>
+    <ClCompile Include="logs_printer.cpp">
+      <Filter>Текст</Filter>
+    </ClCompile>
+    <ClCompile Include="stringcreator.cpp">
+      <Filter>Текст</Filter>
+    </ClCompile>
+    <ClCompile Include="weapon.cpp">
+      <Filter>Логика</Filter>
+    </ClCompile>
+    <ClCompile Include="damageinfo.cpp">
+      <Filter>Логика</Filter>
+    </ClCompile>
+    <ClCompile Include="spaceship.cpp">
+      <Filter>Логика</Filter>
+    </ClCompile>
+    <ClCompile Include="status.cpp">
       <Filter>Логика</Filter>
     </ClCompile>
   </ItemGroup>
@@ -133,16 +148,10 @@
     <ClInclude Include="io.h">
       <Filter>Библиотека</Filter>
     </ClInclude>
-    <ClInclude Include="logs.h">
-      <Filter>Библиотека</Filter>
-    </ClInclude>
     <ClInclude Include="point.h">
       <Filter>Библиотека</Filter>
     </ClInclude>
     <ClInclude Include="rect.h">
-      <Filter>Библиотека</Filter>
-    </ClInclude>
-    <ClInclude Include="stringcreator.h">
       <Filter>Библиотека</Filter>
     </ClInclude>
     <ClInclude Include="surface.h">
@@ -156,6 +165,12 @@
     </ClInclude>
     <ClInclude Include="acol.h">
       <Filter>Библиотека</Filter>
+    </ClInclude>
+    <ClInclude Include="logs.h">
+      <Filter>Текст</Filter>
+    </ClInclude>
+    <ClInclude Include="stringcreator.h">
+      <Filter>Текст</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

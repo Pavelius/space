@@ -4,9 +4,10 @@
 int	main(int argc, char *argv[]) {
 	logs::open("Test");
 	auto p1 = game::find("mars");
-	ship e;
+	spaceship e("dragonfly");
 	e.set(p1);
-	e.marshto();
+	while(game::getday()<20)
+		e.marshto();
 	return 0;
 }
 

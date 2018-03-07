@@ -16,18 +16,19 @@ enum size_s : unsigned char {
 	Diminutive, Small, Medium, Large, Huge, Gigantic,
 };
 enum disposition_s : unsigned char {
-	OnOrbit, InAmbush, InCosmoport, OnLand,
-};
-enum duration_s : unsigned char {
-	Instant,
-	DurationMinute, Duration10Minute,
-	DurationHalfHour, DurationHour,
-	DurationDay, DurationMonth, DurationYear,
+	OnOrbit, NearTo, InCosmoportOf, OnSurfaceOf,
 };
 enum bay_s : unsigned char {
 	NoBay,
 	EngeneeringBay, FotifiedStorage, Hangar, Laboratory, LivingCells, LifeSupport, MedicalBay, Manipulator,
 	Prison, Radar, Stock, Weaponry,
+};
+enum weapon_type_s : unsigned char {
+	Energy, Shrapnel, Rocket,
+};
+enum weapon_s : unsigned char {
+	NoWeapon,
+	Laser, ShrapnelCannon, RocketLauncher, Torpedo
 };
 struct location {
 	location*		parent;
@@ -37,32 +38,66 @@ struct location {
 	landscape_s		landscape;
 	size_s			size;
 	location*		neighboards[8];
-	const char* getname() const { return name; }
+	location*		getparent() const { return parent; }
+	const char*		getname() const { return name; }
 };
-struct bay {
-	bay_s			type;
-	unsigned char	level;
+struct status {
 	short unsigned	hits;
+	unsigned char	level;
+	short unsigned	getmaximum() const;
+};
+struct bay : status {
+	bay_s			type;
+	constexpr bay(bay_s type = NoBay) : status{100, 0}, type(type) {}
 	operator bool() const { return type != NoBay; }
 };
-struct bays : adat<bay, 16> {
+typedef adat<bay, 11> baya;
+struct damageinfo {
+	unsigned char	damage[2];
+	unsigned char	count;
+	unsigned char	distance;
+	void			set(weapon_s id, int level);
+	int				roll();
 };
-class ship : bays {
+struct weapon : status {
+	weapon_s		type;
+	unsigned char	level;
+	constexpr weapon(weapon_s type = NoWeapon) : type(type), level(0) {}
+	void			get(damageinfo& e) const;
+};
+typedef weapon		weapona[6];
+struct ship {
+	const char*		id;
 	const char*		name;
-	short unsigned	hits;
+	size_s			size;
+	status			stat;
+	char			armor;
+	char			march_speed; // Скорость маршевых двигателей (4 - 10)
+	char			hyper_speed; // Скорость в гипер пространстве (0 - 3)
+	char			weapon_slots; // Количество слотов оружия
+	char			bay_slots; // Количество отсеков
+	weapona			weapons;
+	baya			bays;
+};
+class spaceship : ship {
+	short unsigned	hits_maximum;
 	disposition_s	disposition;
 	location*		parent;
 public:
-	ship() : name() {}
+	spaceship(const char* id);
+	bool			encounter();
 	disposition_s	getdisposition() const { return disposition; }
-	short unsigned	gethits() const { return hits; }
+	short unsigned	gethits() const { return stat.hits; }
+	short unsigned	gethitsmax() const { return hits_maximum; }
 	location*		getlocation() const { return parent; }
-	location*		marshto();
+	bool			marshto();
 	void			set(disposition_s value) { disposition = value; }
 	void			set(location* value) { parent = value; }
 };
 namespace game {
-void				add(duration_s value);
+location*			chooselocation(location* parent, location* exclude, const char* format, ...);
 location*			find(const char* id);
-location*			chooselocation(location* parent, const char* format, ...);
+unsigned			getday();
+unsigned			getyear();
+void				nextday();
 }

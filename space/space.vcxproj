@@ -126,6 +126,7 @@
     <ClCompile Include="command.cpp" />
     <ClCompile Include="crt.cpp" />
     <ClCompile Include="crt_parse.cpp" />
+    <ClCompile Include="damageinfo.cpp" />
     <ClCompile Include="draw.cpp" />
     <ClCompile Include="draw_input.cpp" />
     <ClCompile Include="draw_text.cpp" />
@@ -139,10 +140,13 @@
     <ClCompile Include="point.cpp" />
     <ClCompile Include="print.cpp" />
     <ClCompile Include="ship.cpp" />
+    <ClCompile Include="spaceship.cpp" />
+    <ClCompile Include="status.cpp" />
     <ClCompile Include="stringcreator.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="surface_serial.cpp" />
     <ClCompile Include="szdup.cpp" />
+    <ClCompile Include="weapon.cpp" />
     <ClCompile Include="win_draw.cpp" />
     <ClCompile Include="win_io_file.cpp" />
   </ItemGroup>
