@@ -1,0 +1,1 @@
+Error in 'script/test.txt', line 5, column 43: Not found identifier 'sun'

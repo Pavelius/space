@@ -1,0 +1,5 @@
+#location sun name("Солнце")
+#location earth name("Земля") parent(sun)
+#location moon name("Луна") parent(earth)
+#location mars name("Марс") parent(sun)
+#location venera name("Венера") parent(sun)
