@@ -5,7 +5,7 @@ using namespace game;
 bool spaceship::marshto() {
 	auto n = getlocation();
 	auto p = n->getparent();
-	auto r = game::chooselocation(p, n, "К какой планете держать курс?");
+	auto r = chooselocation();
 	// Случайное событие
 	nextday();
 	set(r);

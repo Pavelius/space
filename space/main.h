@@ -34,6 +34,7 @@ struct location {
 	location*		parent;
 	const char*		id;
 	const char*		name;
+	unsigned		distance;
 	population_s	population;
 	landscape_s		landscape;
 	size_s			size;
@@ -85,6 +86,7 @@ class spaceship : ship {
 	location*		parent;
 public:
 	spaceship(const char* id);
+	location*		chooselocation();
 	bool			encounter();
 	disposition_s	getdisposition() const { return disposition; }
 	short unsigned	gethits() const { return stat.hits; }
