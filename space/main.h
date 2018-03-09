@@ -43,7 +43,7 @@ struct location {
 	const char*		getname() const { return name; }
 };
 struct status {
-	short unsigned	hits;
+	short			hits;
 	unsigned char	level;
 	short unsigned	getmaximum() const;
 };
@@ -65,6 +65,7 @@ struct weapon : status {
 	unsigned char	level;
 	constexpr weapon(weapon_s type = NoWeapon) : type(type), level(0) {}
 	void			get(damageinfo& e) const;
+	weapon_type_s	gettype() const;
 };
 typedef weapon		weapona[6];
 struct ship {
@@ -79,23 +80,31 @@ struct ship {
 	char			bay_slots; // Количество отсеков
 	weapona			weapons;
 	baya			bays;
+	void			act(const char* format, ...) const;
 };
 class spaceship : ship {
 	short unsigned	hits_maximum;
 	disposition_s	disposition;
 	location*		parent;
+	spaceship*		leader;
+	unsigned char	distance;
 public:
+	spaceship();
 	spaceship(const char* id);
 	location*		chooselocation();
 	bool			encounter();
+	void			damage(bool interactive, int value, weapon_type_s type);
 	disposition_s	getdisposition() const { return disposition; }
+	unsigned char	getdistance() const { return distance; }
 	short unsigned	gethits() const { return stat.hits; }
 	short unsigned	gethitsmax() const { return hits_maximum; }
 	location*		getlocation() const { return parent; }
 	bool			marshto();
 	void			set(disposition_s value) { disposition = value; }
 	void			set(location* value) { parent = value; }
+	void			shoot(bool interactive, weapon& e, spaceship& enemy);
 };
+extern adat<spaceship, 260> spaceships;
 namespace game {
 location*			chooselocation(location* parent, location* exclude, const char* format, ...);
 location*			find(const char* id);

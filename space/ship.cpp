@@ -14,6 +14,12 @@ static ship& findship(const char* id) {
 	return ship_data[0];
 }
 
+void ship::act(const char* format, ...) const {
+}
+
 spaceship::spaceship(const char* id) : ship(findship(id)) {
 	hits_maximum = gethits();
+}
+
+spaceship::spaceship() {
 }
